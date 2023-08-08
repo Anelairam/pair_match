@@ -1,14 +1,10 @@
 export const NumberCheck = (playersChoice) => {
-  console.log(
-    "Add up of the players choice : ",
-    playersChoice[0].number + playersChoice[1].number
-  );
-  const indexOne = playersChoice[0].index;
-  const indexTwo = playersChoice[1].index;
+  const indexOne = playersChoice[0].number.id;
+  const indexTwo = playersChoice[1].number.id;
 
   if (
-    playersChoice[0].number === playersChoice[1].number ||
-    playersChoice[0].number + playersChoice[1].number === 10
+    playersChoice[0].number.num === playersChoice[1].number.num ||
+    playersChoice[0].number.num + playersChoice[1].number.num === 10
   ) {
     if (indexOne === indexTwo - 9 || indexOne === indexTwo + 9) {
       console.log("Numbers can be deleted, points added to the player");
