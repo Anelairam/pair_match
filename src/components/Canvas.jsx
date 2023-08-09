@@ -6,7 +6,6 @@ export const Canvas = ({ numbers, handleMatch }) => {
   console.log("Canvas refreshed");
   const playersChoice = [];
   const handleClick = (number, e) => {
-    e.currentTarget.style.backgroundColor = "lightblue";
     playersChoice.push({ number });
     if (playersChoice.length === 2) {
       if (NumberCheck(playersChoice)) {
@@ -19,20 +18,15 @@ export const Canvas = ({ numbers, handleMatch }) => {
   return (
     <Grid container columns={9} sx={{ backgroundColor: "pink" }}>
       {numbers.map((number) => {
-        return number.enabled ? (
+        return (
           <Grid
             item
             key={number.id}
             xs={1}
             onClick={(e) => handleClick(number, e)}
           >
-            <Typography>index : {number.index}</Typography>
+            <Typography>index : {number.id}</Typography>
             <Typography variant="h2">{number.num}</Typography>
-          </Grid>
-        ) : (
-          <Grid item key={number.id} xs={1} sx={{backgroundColor : "grey"}}>
-            <Typography>index : {number.index}</Typography>
-            <Typography variant="h1">{number.num}</Typography>
           </Grid>
         );
       })}
