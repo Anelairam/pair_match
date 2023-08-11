@@ -2,13 +2,20 @@ import { Grid, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { NumberCheck } from "../numberCheck";
 
-export const Canvas = ({ numbers, handleMatch }) => {
+export const Canvas = ({ numbers, handleMatch, setScore, score }) => {
   const playersChoice = [];
+  let res;
   const handleClick = (number, e) => {
     playersChoice.push({ number });
     if (playersChoice.length === 2) {
-      if (NumberCheck(playersChoice)) {
+      res = NumberCheck(playersChoice);
+      if (res.res) {
+        setScore(score + res.reward);
         handleMatch(playersChoice[0].number.id, playersChoice[1].number.id);
+      } else {
+        if (score >= 5) {
+          setScore(score + res.reward);
+        }
       }
       playersChoice.length = 0;
     }
@@ -24,7 +31,7 @@ export const Canvas = ({ numbers, handleMatch }) => {
             xs={1}
             onClick={(e) => handleClick(number, e)}
           >
-            <Typography>index : {number.id}</Typography>
+            <Typography>ID : {number.id}</Typography>
             <Typography variant="h2">{number.num}</Typography>
           </Grid>
         );

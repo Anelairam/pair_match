@@ -1,26 +1,31 @@
 export const NumberCheck = (playersChoice) => {
   const indexOne = playersChoice[0].number.id;
   const indexTwo = playersChoice[1].number.id;
-
+  const result = {'res': true, 'reward': 0}
   if (
     playersChoice[0].number.num === playersChoice[1].number.num ||
     playersChoice[0].number.num + playersChoice[1].number.num === 10
   ) {
     if (indexOne === indexTwo - 9 || indexOne === indexTwo + 9) {
-      console.log("Numbers can be deleted, points added to the player");
-      return true;
+      result.res=true
+      result.reward = playersChoice[0].number.num + playersChoice[1].number.num
+      return result;
     } else if (indexOne === indexTwo - 10 || indexOne === indexTwo + 10) {
-      console.log("Numbers can be deleted, points added to the player");
-      return true;
+      result.res=true
+      result.reward = playersChoice[0].number.num + playersChoice[1].number.num
+      return result;
     } else if (indexOne === indexTwo - 8 || indexOne === indexTwo + 8) {
-      console.log("Numbers can be deleted, points added to the player");
-      return true;
+      result.res=true
+      result.reward = playersChoice[0].number.num + playersChoice[1].number.num
+      return result;
     } else if (indexOne === indexTwo - 1 || indexOne === indexTwo + 1) {
-      console.log("Numbers can be deleted, points added to the player");
-      return true;
+      result.res=true
+      result.reward = playersChoice[0].number.num + playersChoice[1].number.num
+      return result;
     }
   } else {
-    console.log("Numbers are not matching");
-    return false;
+    result.res=false
+      result.reward = -5
+      return result;
   }
 };

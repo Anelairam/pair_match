@@ -12,14 +12,10 @@ export const AddNumbers = (numbers) => {
     }
     additionalNumbers.push({ enabled: true, num: number.num, id: id });
   });
-  console.log('Additional numbers before concatination : ', additionalNumbers);
 
-  // (max - min) + min
   // Might be an issue with sorting on testing it was working fine but before it was not keep an eye
   additionalNumbers = numbers.concat(additionalNumbers);
-  // console.log("Additional numbers after concatinatio : ", additionalNumbers);
-  additionalNumbers.sort((a ,b)=> a.id -b.id);
-  console.log("Additional numbers after sorting : ", additionalNumbers);
+  additionalNumbers.sort((a, b) => a.id - b.id);
 
   return additionalNumbers;
 };
