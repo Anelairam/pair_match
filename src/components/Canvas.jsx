@@ -22,7 +22,7 @@ export const Canvas = ({ numbers, handleMatch, setScore, score }) => {
   };
 
   return (
-    <Grid container columns={9} sx={{ backgroundColor: "pink" }}>
+    <Grid container columns={9} sx={{ backgroundColor: "pink", margin: '5px' , maxWidth: '80%'}}>
       {numbers.map((number) => {
         return (
           <Grid
@@ -30,9 +30,9 @@ export const Canvas = ({ numbers, handleMatch, setScore, score }) => {
             key={number.id}
             xs={1}
             onClick={(e) => handleClick(number, e)}
+            sx={{backgroundColor: 'lightyellow', border: '1px solid black', textAlign: 'center'}}
           >
-            <Typography>ID : {number.id}</Typography>
-            <Typography variant="h2">{number.num}</Typography>
+            <Typography variant="h3">{number.num}</Typography>
           </Grid>
         );
       })}

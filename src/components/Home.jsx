@@ -21,7 +21,7 @@ export const Home = () => {
     //   }
     //   return number;
     // });
-    
+
     const refinedNumbers = numbers.filter((number) => {
       if (number.id !== idOne && number.id !== idTwo) {
         return number;
@@ -52,19 +52,26 @@ export const Home = () => {
 
   useEffect(() => {
     let matches = CanvasCheck(numbers);
-    if(numbers.length !==0){
+    if (numbers.length !== 0) {
       if (!matches && addNumbers === 0) {
         console.log("Game over");
       }
-    }else {
-      setNumbers(Start())
+    } else {
+      setNumbers(Start());
     }
   });
 
   return (
     <>
-      <Typography variant="h2">{score}</Typography>
-      <Canvas numbers={numbers} handleMatch={handleMatch} setScore={setScore} score={score}/>
+      <Typography variant="h2" sx={{ backgroundColor: "lightblue" }}>
+        {score}
+      </Typography>
+      <Canvas
+        numbers={numbers}
+        handleMatch={handleMatch}
+        setScore={setScore}
+        score={score}
+      />
       <IconButton onClick={handleAddClick}>
         <Badge badgeContent={addNumbers} color="primary">
           <AddIcon />
