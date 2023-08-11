@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { NumberCheck } from "../numberCheck";
 
 export const Canvas = ({ numbers, handleMatch }) => {
-  console.log("Canvas refreshed");
   const playersChoice = [];
   const handleClick = (number, e) => {
     playersChoice.push({ number });

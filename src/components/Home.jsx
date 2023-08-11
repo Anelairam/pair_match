@@ -4,6 +4,7 @@ import { Canvas } from "./Canvas";
 import { Badge, IconButton } from "@mui/material";
 import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 import AddIcon from "@mui/icons-material/Add";
+import { AddNumbers } from "../addNumbers";
 
 export const Home = () => {
   const [numbers, setNumbers] = useState(Start());
@@ -35,6 +36,7 @@ export const Home = () => {
 
   const handleAddClick = () => {
     if (addNumbers !== 0) {
+      setNumbers(AddNumbers(numbers));
       setAddNumbers(addNumbers - 1);
     }
   };
@@ -45,9 +47,9 @@ export const Home = () => {
     }
   };
 
-  useEffect(() => {
-    console.log("Component rerendered, useEffect ran");
-  });
+  // useEffect(() => {
+  //   console.log("Component rerendered, useEffect ran");
+  // });
   return (
     <>
       <Canvas numbers={numbers} handleMatch={handleMatch} />
