@@ -1,4 +1,5 @@
-import { Grid, Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
 import React, { useState } from "react";
 import { NumberCheck } from "../numberCheck";
 
@@ -22,20 +23,32 @@ export const Canvas = ({ numbers, handleMatch, setScore, score }) => {
   };
 
   return (
-    <Grid container columns={9} sx={{ backgroundColor: "pink", margin: '5px' , maxWidth: '80%'}}>
-      {numbers.map((number) => {
-        return (
-          <Grid
-            item
-            key={number.id}
-            xs={1}
-            onClick={(e) => handleClick(number, e)}
-            sx={{backgroundColor: 'lightyellow', border: '1px solid black', textAlign: 'center'}}
-          >
-            <Typography variant="h3">{number.num}</Typography>
-          </Grid>
-        );
-      })}
-    </Grid>
+    <Container>
+      <Grid
+        container
+        alignSelf={"center"}
+        columns={9}
+        spacing={1}
+        sx={{ backgroundColor: "pink" }}
+      >
+        {numbers.map((number) => {
+          return (
+            <Grid
+              item
+              xs={1}
+              key={number.id}
+              onClick={(e) => handleClick(number, e)}
+              sx={{
+                backgroundColor: "lightyellow",
+                border: "1px solid black",
+                textAlign: "center",
+              }}
+            >
+              <Typography variant="h3">{number.num}</Typography>
+            </Grid>
+          );
+        })}
+      </Grid>
+    </Container>
   );
 };

@@ -63,8 +63,15 @@ export const Home = () => {
 
   return (
     <>
-      <Typography variant="h2" sx={{ backgroundColor: "lightblue" }}>
-        {score}
+      <Typography variant="h1" align="center">
+        Number Match
+      </Typography>
+      <Typography
+        variant="h4"
+        align="center"
+        sx={{ backgroundColor: "lightblue" }}
+      >
+        Your Score : {score}
       </Typography>
       <Canvas
         numbers={numbers}
