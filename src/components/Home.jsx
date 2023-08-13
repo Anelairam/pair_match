@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Start } from "../start";
 import { Canvas } from "./Canvas";
-import { Badge, IconButton, Typography } from "@mui/material";
+import { Badge, Container, IconButton, Stack, Typography } from "@mui/material";
 import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 import AddIcon from "@mui/icons-material/Add";
 import { AddNumbers } from "../addNumbers";
@@ -63,32 +63,41 @@ export const Home = () => {
 
   return (
     <>
-      <Typography variant="h1" align="center">
-        Number Match
-      </Typography>
-      <Typography
-        variant="h4"
-        align="center"
-        sx={{ backgroundColor: "lightblue" }}
-      >
-        Your Score : {score}
-      </Typography>
-      <Canvas
-        numbers={numbers}
-        handleMatch={handleMatch}
-        setScore={setScore}
-        score={score}
-      />
-      <IconButton onClick={handleAddClick}>
-        <Badge badgeContent={addNumbers} color="primary">
-          <AddIcon />
-        </Badge>
-      </IconButton>
-      <IconButton onClick={handleTipsClick}>
-        <Badge badgeContent={tips} color="primary">
-          <TipsAndUpdatesIcon fontSize="medium" color="primary" />
-        </Badge>
-      </IconButton>
+      <Container>
+        <Typography variant="h1" align="center">
+          Number Match
+        </Typography>
+        <Typography
+          variant="h4"
+          align="center"
+          sx={{ backgroundColor: "lightblue" }}
+        >
+          Your Score : {score}
+        </Typography>
+        <Canvas
+          numbers={numbers}
+          handleMatch={handleMatch}
+          setScore={setScore}
+          score={score}
+        />
+        <Stack
+          direction="row"
+          spacing={2}
+          justifyContent="center"
+          sx={{ backgroundColor: "lightgrey" }}
+        >
+          <IconButton onClick={handleAddClick} aria-label="Add numbers">
+            <Badge badgeContent={addNumbers} color="primary">
+              <AddIcon />
+            </Badge>
+          </IconButton>
+          <IconButton onClick={handleTipsClick} aria-label="Show me hint">
+            <Badge badgeContent={tips} color="primary">
+              <TipsAndUpdatesIcon fontSize="medium" color="primary" />
+            </Badge>
+          </IconButton>
+        </Stack>
+      </Container>
     </>
   );
 };

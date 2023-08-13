@@ -7,7 +7,7 @@ export const Start = () => {
     while (numbers[pos] !== undefined) {
       pos = Math.floor(Math.random() * 27);
     }
-    numbers[pos] = { enabled: true, num: ran, id : pos };
+    numbers[pos] = { enabled: false, num: ran, id : pos };
   }
   return numbers;
 };
