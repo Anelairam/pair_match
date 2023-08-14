@@ -6,6 +6,7 @@ import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 import AddIcon from "@mui/icons-material/Add";
 import { AddNumbers } from "../addNumbers";
 import { CanvasCheck } from "../canvasCheck";
+import { LinesCheck } from "../linesCheck";
 
 export const Home = () => {
   const [numbers, setNumbers] = useState(Start());
@@ -15,17 +16,11 @@ export const Home = () => {
 
   // The function handles the pairs choosen by the player, it returns the unmatched numbers. And refresehes their id
   const handleMatch = (idOne, idTwo) => {
-    // const refinedNumbers = numbers.map((number) => {
-    //   if (number.id === idOne || number.id === idTwo) {
-    //     return {...number, enabled: false};
-    //   }
-    //   return number;
-    // });
-
-    const refinedNumbers = numbers.filter((number) => {
-      if (number.id !== idOne && number.id !== idTwo) {
-        return number;
+    const refinedNumbers = numbers.map((number) => {
+      if (number.id === idOne || number.id === idTwo) {
+        return { ...number, enabled: false };
       }
+      return number;
     });
 
     let counter = 0;
@@ -39,7 +34,13 @@ export const Home = () => {
 
   const handleAddClick = () => {
     if (addNumbers !== 0) {
-      setNumbers(AddNumbers(numbers));
+      const additionalNumbers = AddNumbers(numbers);
+      let counter = 0;
+      additionalNumbers.forEach((number) => {
+        number.id = counter;
+        counter++;
+      });
+      setNumbers(additionalNumbers);
       setAddNumbers(addNumbers - 1);
     }
   };
@@ -51,14 +52,15 @@ export const Home = () => {
   };
 
   useEffect(() => {
-    let matches = CanvasCheck(numbers);
-    if (numbers.length !== 0) {
-      if (!matches && addNumbers === 0) {
-        console.log("Game over");
-      }
-    } else {
-      setNumbers(Start());
+  let matches = CanvasCheck(numbers);
+  // let line = LinesCheck(numbers);
+  if (numbers.length !== 0) {
+    if (matches.result === false && addNumbers === 0) {
+      console.log("Game over");
     }
+  } else {
+    setNumbers(Start());
+  }
   });
 
   return (

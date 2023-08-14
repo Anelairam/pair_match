@@ -1,6 +1,10 @@
 export const CanvasCheck = (numbers) => {
   let result = false;
+  let counter = 0;
   for (let i = 0; i < numbers.length - 1; i++) {
+    if (numbers[i].enabled === true) {
+      counter++;
+    }
     if (
       numbers[i].num === numbers[i + 1].num ||
       numbers[i].num + numbers[i + 1].num === 10
@@ -31,5 +35,5 @@ export const CanvasCheck = (numbers) => {
       result = false;
     }
   }
-  return result;
+  return { result: result, counter: counter };
 };

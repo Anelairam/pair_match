@@ -6,10 +6,10 @@ import { NumberCheck } from "../numberCheck";
 export const Canvas = ({ numbers, handleMatch, setScore, score }) => {
   const playersChoice = [];
   let res;
-  const handleClick = (number, e) => {
+  const handleClick = (number) => {
     playersChoice.push({ number });
     if (playersChoice.length === 2) {
-      res = NumberCheck(playersChoice);
+      res = NumberCheck(playersChoice, numbers);
       if (res.res) {
         setScore(score + res.reward);
         handleMatch(playersChoice[0].number.id, playersChoice[1].number.id);
@@ -45,17 +45,20 @@ export const Canvas = ({ numbers, handleMatch, setScore, score }) => {
                 textAlign: "center",
               }}
             >
+              <Typography variant="body">{number.id}</Typography>
               <Typography variant="h3">{number.num}</Typography>
             </Grid> : <Grid
               item
               xs={1}
               key={number.id}
               sx={{
-                backgroundColor: "lightgreen",
+                backgroundColor: "lightgrey",
+                color: 'white',
                 border: "1px solid black",
                 textAlign: "center",
               }}
             >
+              <Typography variant="body">{number.id}</Typography>
               <Typography variant="h3">{number.num}</Typography>
             </Grid>
           );
