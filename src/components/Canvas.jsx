@@ -3,6 +3,14 @@ import Grid from "@mui/material/Unstable_Grid2";
 import React from "react";
 import { NumberCheck } from "../numberCheck";
 
+const boxHover = {
+  border: "1px solid #9c27b0",
+  textAlign: "center",
+  "&:hover": {
+    cursor: "pointer",
+  },
+};
+
 export const Canvas = ({ numbers, handleMatch, setScore, score }) => {
   const playersChoice = [];
   let res;
@@ -24,36 +32,27 @@ export const Canvas = ({ numbers, handleMatch, setScore, score }) => {
 
   return (
     <Container>
-      <Grid
-        container
-        alignSelf={"center"}
-        columns={9}
-        spacing={1}
-        sx={{ backgroundColor: "pink" }}
-      >
+      <Grid container alignSelf={"center"} columns={9} spacing={1}>
         {numbers.map((number) => {
-          return (
-            number.enabled ? 
+          return number.enabled ? (
             <Grid
               item
               xs={1}
               key={number.id}
               onClick={(e) => handleClick(number, e)}
-              sx={{
-                backgroundColor: "lightyellow",
-                border: "1px solid black",
-                textAlign: "center",
-              }}
+              sx={boxHover}
             >
               <Typography variant="body">{number.id}</Typography>
               <Typography variant="h3">{number.num}</Typography>
-            </Grid> : <Grid
+            </Grid>
+          ) : (
+            <Grid
               item
               xs={1}
               key={number.id}
               sx={{
                 backgroundColor: "lightgrey",
-                color: 'white',
+                color: "white",
                 border: "1px solid black",
                 textAlign: "center",
               }}

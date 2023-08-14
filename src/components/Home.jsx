@@ -7,6 +7,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { AddNumbers } from "../addNumbers";
 import { CanvasCheck } from "../canvasCheck";
 import { LinesCheck } from "../linesCheck";
+import SportsScoreIcon from '@mui/icons-material/SportsScore';
 
 export const Home = () => {
   const [numbers, setNumbers] = useState(Start());
@@ -48,6 +49,7 @@ export const Home = () => {
   const handleTipsClick = () => {
     if (tips !== 0) {
       setTips(tips - 1);
+      alert("Hints coming soon")
     }
   };
 
@@ -56,7 +58,7 @@ export const Home = () => {
   // let line = LinesCheck(numbers);
   if (numbers.length !== 0) {
     if (matches.result === false && addNumbers === 0) {
-      console.log("Game over");
+      alert("Game over");
     }
   } else {
     setNumbers(Start());
@@ -72,9 +74,9 @@ export const Home = () => {
         <Typography
           variant="h4"
           align="center"
-          sx={{ backgroundColor: "lightblue" }}
+          sx={{ margin: '5px' }}
         >
-          Your Score : {score}
+          Your Score : {score} <SportsScoreIcon sx={{ fontSize: '30px'}}/>
         </Typography>
         <Canvas
           numbers={numbers}
@@ -86,16 +88,16 @@ export const Home = () => {
           direction="row"
           spacing={2}
           justifyContent="center"
-          sx={{ backgroundColor: "lightgrey" }}
+          sx={{ margin: '10px' }}
         >
           <IconButton onClick={handleAddClick} aria-label="Add numbers">
-            <Badge badgeContent={addNumbers} color="primary">
-              <AddIcon />
+            <Badge badgeContent={addNumbers} color="secondary">
+              <AddIcon color="secondary" />
             </Badge>
           </IconButton>
           <IconButton onClick={handleTipsClick} aria-label="Show me hint">
-            <Badge badgeContent={tips} color="primary">
-              <TipsAndUpdatesIcon fontSize="medium" color="primary" />
+            <Badge badgeContent={tips} color="secondary">
+              <TipsAndUpdatesIcon fontSize="medium" color="secondary" />
             </Badge>
           </IconButton>
         </Stack>
