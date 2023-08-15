@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Start } from "../start";
 import { Canvas } from "./Canvas";
 import { Badge, Container, IconButton, Stack, Typography } from "@mui/material";
@@ -7,7 +7,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { AddNumbers } from "../addNumbers";
 import { CanvasCheck } from "../canvasCheck";
 import { LinesCheck } from "../linesCheck";
-import SportsScoreIcon from '@mui/icons-material/SportsScore';
+import SportsScoreIcon from "@mui/icons-material/SportsScore";
 
 export const Home = () => {
   const [numbers, setNumbers] = useState(Start());
@@ -49,21 +49,32 @@ export const Home = () => {
   const handleTipsClick = () => {
     if (tips !== 0) {
       setTips(tips - 1);
-      alert("Hints coming soon")
+      alert("Hints coming soon");
     }
   };
 
   useEffect(() => {
-  let matches = CanvasCheck(numbers);
-  // let line = LinesCheck(numbers);
-  if (numbers.length !== 0) {
-    if (matches.result === false && addNumbers === 0) {
-      alert("Game over");
+    let matches = CanvasCheck(numbers);
+    if (numbers.length !== 0) {
+      if (matches.result === false && addNumbers === 0) {
+        alert("Game over");
+      }
+    } else {
+      setNumbers(Start());
     }
-  } else {
-    setNumbers(Start());
-  }
   });
+
+  useMemo(() => {
+    let line = LinesCheck(numbers);
+    if (line.lineFound === true) {
+      let counter = 0;
+      line.newnums.forEach((number) => {
+        number.id = counter;
+        counter++;
+      });
+      setNumbers(line.newnums);
+    }
+  },[numbers]);
 
   return (
     <>
@@ -71,12 +82,8 @@ export const Home = () => {
         <Typography variant="h1" align="center">
           Number Match
         </Typography>
-        <Typography
-          variant="h4"
-          align="center"
-          sx={{ margin: '5px' }}
-        >
-          Your Score : {score} <SportsScoreIcon sx={{ fontSize: '30px'}}/>
+        <Typography variant="h4" align="center" sx={{ margin: "5px" }}>
+          Your Score : {score} <SportsScoreIcon sx={{ fontSize: "30px" }} />
         </Typography>
         <Canvas
           numbers={numbers}
@@ -88,7 +95,7 @@ export const Home = () => {
           direction="row"
           spacing={2}
           justifyContent="center"
-          sx={{ margin: '10px' }}
+          sx={{ margin: "10px" }}
         >
           <IconButton onClick={handleAddClick} aria-label="Add numbers">
             <Badge badgeContent={addNumbers} color="secondary">

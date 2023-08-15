@@ -14,16 +14,18 @@ export const NumberCheck = (playersChoice, numbers) => {
     maxId = playersChoice[1].number.id;
   }
 
-  times8 = Math.trunc(maxId / 8);
-  times9 = Math.trunc(maxId / 9);
-  times10 = Math.trunc(maxId / 10);
+  // times8 = Math.trunc(maxId / 8);
+  // times9 = Math.trunc(maxId / 9);
+  // times10 = Math.trunc(maxId / 10);
+
+  times8 = Math.trunc((maxId - minId) / 8);
+  times9 = Math.trunc((maxId - minId) / 9);
+  times10 = Math.trunc((maxId - minId) / 10);
   if (
     playersChoice[0].number.num === playersChoice[1].number.num ||
     playersChoice[0].number.num + playersChoice[1].number.num === 10
   ) {
-    console.log("MaxId : ", maxId, " MindId : ", minId);
     if (maxId - minId === times8 * 8 || maxId - minId === 8) {
-      console.log("maxId - minId === times8 * 8", maxId - minId === times8 * 8);
       for (let i = minId + 8; i < maxId; i += 8) {
         if (numbers[i].enabled === true) {
           found = true;
@@ -40,7 +42,6 @@ export const NumberCheck = (playersChoice, numbers) => {
         return result;
       }
     } else if (maxId - minId === times9 * 9 || maxId - minId === 9) {
-      console.log("maxId - minId === times9 * 9", maxId - minId === times9 * 9);
       for (let i = minId + 9; i < maxId; i += 9) {
         if (numbers[i].enabled === true) {
           found = true;
@@ -57,10 +58,6 @@ export const NumberCheck = (playersChoice, numbers) => {
         return result;
       }
     } else if (maxId - minId === times10 * 10 || maxId - minId === 10) {
-      console.log(
-        "maxId - minId === times10 * 10",
-        maxId - minId === times10 * 10
-      );
       for (let i = minId + 10; i < maxId; i += 10) {
         if (numbers[i].enabled === true) {
           found = true;
@@ -97,7 +94,6 @@ export const NumberCheck = (playersChoice, numbers) => {
         }
       }
     } else {
-      console.log("κατι αλλο");
       result.res = false;
       result.reward = -5;
       return result;
